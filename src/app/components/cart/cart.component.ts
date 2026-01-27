@@ -20,6 +20,11 @@ export class CartComponent implements OnInit {
   address = '';
   creditCard = '';
 
+  // Validation error messages (updated via ngModelChange)
+  fullNameError = '';
+  addressError = '';
+  creditCardError = '';
+
   constructor(
     private cartService: CartService,
     private router: Router
@@ -44,8 +49,53 @@ export class CartComponent implements OnInit {
     return (
       this.fullName.trim().length >= 3 &&
       this.address.trim().length >= 6 &&
-      this.creditCard.trim().length >= 16
+      this.creditCard.length >= 16 &&
+      this.isCreditCardValid()
     );
+  }
+
+  // Validation method called by ngModelChange for full name
+  validateFullName(): void {
+    if (this.fullName.length === 0) {
+      this.fullNameError = '';
+    } else if (this.fullName.trim().length < 3) {
+      this.fullNameError = 'Name must be at least 3 characters';
+    } else {
+      this.fullNameError = '';
+    }
+  }
+
+  // Validation method called by ngModelChange for address
+  validateAddress(): void {
+    if (this.address.length === 0) {
+      this.addressError = '';
+    } else if (this.address.trim().length < 6) {
+      this.addressError = 'Address must be at least 6 characters';
+    } else {
+      this.addressError = '';
+    }
+  }
+
+  // Validation method called by ngModelChange for credit card
+  validateCreditCard(): void {
+    // Remove any non-digit characters for validation
+    const digitsOnly = this.creditCard.replace(/\D/g, '');
+
+    if (this.creditCard.length === 0) {
+      this.creditCardError = '';
+    } else if (this.creditCard !== digitsOnly) {
+      this.creditCardError = 'Credit card must contain only numbers';
+    } else if (digitsOnly.length < 16) {
+      this.creditCardError = 'Credit card must be at least 16 digits';
+    } else {
+      this.creditCardError = '';
+    }
+  }
+
+  // Check if credit card contains only numbers
+  isCreditCardValid(): boolean {
+    const digitsOnly = this.creditCard.replace(/\D/g, '');
+    return this.creditCard === digitsOnly && digitsOnly.length >= 16;
   }
 
   updateQuantity(productId: number, event: Event): void {

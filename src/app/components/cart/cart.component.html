@@ -47,13 +47,14 @@
           type="text"
           id="fullName"
           [(ngModel)]="fullName"
+          (ngModelChange)="validateFullName()"
           name="fullName"
           placeholder="Enter your full name"
           required
           minlength="3"
         />
-        <div *ngIf="fullName.length > 0 && fullName.length < 3">
-          <small style="color: red">Name must be at least 3 characters</small>
+        <div *ngIf="fullNameError" class="error-message">
+          <small>{{ fullNameError }}</small>
         </div>
       </div>
 
@@ -63,13 +64,14 @@
           type="text"
           id="address"
           [(ngModel)]="address"
+          (ngModelChange)="validateAddress()"
           name="address"
           placeholder="Enter your address"
           required
           minlength="6"
         />
-        <div *ngIf="address.length > 0 && address.length < 6">
-          <small style="color: red">Address must be at least 6 characters</small>
+        <div *ngIf="addressError" class="error-message">
+          <small>{{ addressError }}</small>
         </div>
       </div>
 
@@ -79,14 +81,15 @@
           type="text"
           id="creditCard"
           [(ngModel)]="creditCard"
+          (ngModelChange)="validateCreditCard()"
           name="creditCard"
           placeholder="Enter 16-digit card number"
           required
           minlength="16"
           maxlength="19"
         />
-        <div *ngIf="creditCard.length > 0 && creditCard.length < 16">
-          <small style="color: red">Credit card must be at least 16 digits</small>
+        <div *ngIf="creditCardError" class="error-message">
+          <small>{{ creditCardError }}</small>
         </div>
       </div>
 
