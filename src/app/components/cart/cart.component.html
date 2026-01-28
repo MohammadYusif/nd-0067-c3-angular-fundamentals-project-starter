@@ -1,0 +1,98 @@
+<div *ngIf="isCartEmpty" class="empty-cart-message">
+  <div>
+    <h2>Your cart is empty</h2>
+    <p><a routerLink="/products">Continue Shopping</a></p>
+  </div>
+</div>
+
+<div *ngIf="!isCartEmpty" class="cart-container">
+  <div class="cart-panel">
+    <h2>Shopping Cart</h2>
+
+    <div *ngFor="let item of cartItems" class="cart-item">
+      <img [src]="item.product.url" [alt]="item.product.name" />
+      <div class="cart-item-details">
+        <h3>{{ item.product.name }}</h3>
+        <p>{{ item.product.price | currency }}</p>
+        <div>
+          <label for="quantity-{{ item.product.id }}">Quantity: </label>
+          <input
+            type="number"
+            id="quantity-{{ item.product.id }}"
+            [value]="item.quantity"
+            (change)="updateQuantity(item.product.id, $event)"
+            min="1"
+            max="100"
+            class="number-input"
+          />
+        </div>
+        <p>
+          <strong>Subtotal:</strong>
+          {{ item.product.price * item.quantity | currency }}
+        </p>
+        <button (click)="removeFromCart(item.product.id)">Remove</button>
+      </div>
+    </div>
+
+    <hr />
+    <h3>Total: {{ cartTotal | currency }}</h3>
+  </div>
+
+  <div class="cart-panel">
+    <h2>Checkout</h2>
+    <form (ngSubmit)="submitOrder()">
+      <div class="form-margin">
+        <label for="fullName">Full Name:</label><br />
+        <input
+          type="text"
+          id="fullName"
+          [(ngModel)]="fullName"
+          name="fullName"
+          placeholder="Enter your full name"
+          required
+          minlength="3"
+        />
+        <div *ngIf="fullName.length > 0 && fullName.length < 3">
+          <small style="color: red">Name must be at least 3 characters</small>
+        </div>
+      </div>
+
+      <div class="form-margin">
+        <label for="address">Address:</label><br />
+        <input
+          type="text"
+          id="address"
+          [(ngModel)]="address"
+          name="address"
+          placeholder="Enter your address"
+          required
+          minlength="6"
+        />
+        <div *ngIf="address.length > 0 && address.length < 6">
+          <small style="color: red">Address must be at least 6 characters</small>
+        </div>
+      </div>
+
+      <div class="form-margin">
+        <label for="creditCard">Credit Card Number:</label><br />
+        <input
+          type="text"
+          id="creditCard"
+          [(ngModel)]="creditCard"
+          name="creditCard"
+          placeholder="Enter 16-digit card number"
+          required
+          minlength="16"
+          maxlength="19"
+        />
+        <div *ngIf="creditCard.length > 0 && creditCard.length < 16">
+          <small style="color: red">Credit card must be at least 16 digits</small>
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="!isFormValid">
+        Place Order
+      </button>
+    </form>
+  </div>
+</div>

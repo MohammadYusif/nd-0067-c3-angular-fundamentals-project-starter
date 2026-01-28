@@ -1,10 +1,58 @@
 # MyStore Project Overview
 
-MyStore is Angular application that allows users to view a list of available products to purchase, add them to a shopping cart, and ultimately complete the checkout process. 
+MyStore is an Angular e-commerce application that allows users to view a list of available products to purchase, add them to a shopping cart, and complete the checkout process.
 
-## Getting Started
+## Installation and Launch
 
-To use these files, simply merge the folders into the root directory of your scaffolded Angular application.
+```bash
+# Install dependencies
+npm install
+
+# Start the development server
+ng serve
+```
+
+The application will be available at `http://localhost:4200`
+
+## Features
+
+- **Product List**: Browse available products with images, names, and prices
+- **Product Details**: View detailed information about individual products
+- **Shopping Cart**: Add products with quantity selection, update quantities, remove items
+- **Checkout Form**: Validated form collecting customer name, address, and payment info
+- **Order Confirmation**: Success page showing order summary after checkout
+- **Cart Badge**: Real-time cart item count displayed in header
+- **Notifications**: User feedback when items are added/removed from cart
+
+## Project Structure
+
+```
+src/app/
+├── components/
+│   ├── cart/                    # Shopping cart with checkout form
+│   ├── confirmation/            # Order confirmation page
+│   ├── product-item/            # Individual product card
+│   ├── product-item-detail/     # Product detail page
+│   └── product-list/            # Main product listing
+├── layout/
+│   └── header/                  # Navigation header
+├── models/
+│   ├── cart-item.ts             # CartItem interface
+│   └── product.ts               # Product interface
+├── services/
+│   ├── cart.service.ts          # Cart state management
+│   └── product.service.ts       # Product data fetching
+├── app.component.*              # Root component
+└── app.routes.ts                # Application routing
+```
+
+## Technologies Used
+
+- Angular 17 (Standalone Components)
+- TypeScript
+- RxJS
+- Angular Router
+- Angular Forms
 
 ## Project Instructions
 

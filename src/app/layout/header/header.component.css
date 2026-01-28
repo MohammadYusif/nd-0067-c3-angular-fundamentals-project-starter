@@ -1,10 +1,111 @@
 .header {
-  text-align: center;
-  background: #33B5E5;
+  background: linear-gradient(135deg, #1a237e 0%, #33B5E5 100%);
   color: #fff;
-  padding: 12px;
+  padding: 16px 24px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
+.brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+
+.brand:hover {
+  text-decoration: none;
+  opacity: 0.9;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 a {
   color: #ffffff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+  opacity: 0.9;
+}
+
+.cart-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  transition: background 0.2s;
+}
+
+.cart-link:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.cart-icon {
+  font-size: 1.2rem;
+}
+
+.cart-badge {
+  background: #ff4081;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: 12px;
+  margin-left: 4px;
+}
+
+.user-info {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.auth-btn {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.login-btn {
+  background: #fff;
+  color: #1a237e;
+}
+
+.login-btn:hover {
+  background: #f0f0f0;
+  transform: translateY(-1px);
+}
+
+.logout-btn {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.logout-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
 }

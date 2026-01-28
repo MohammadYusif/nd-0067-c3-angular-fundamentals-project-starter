@@ -1,0 +1,26 @@
+<header class="header">
+  <nav class="nav-container">
+    <div class="nav-left">
+      <a routerLink="/products" class="brand">MyStore</a>
+    </div>
+
+    <div class="nav-right">
+      <a routerLink="/cart" class="cart-link">
+        <span class="cart-icon">🛒</span>
+        Cart
+        <span *ngIf="cartCount > 0" class="cart-badge">{{ cartCount }}</span>
+      </a>
+
+      <ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
+        <span class="user-info" *ngIf="auth.user$ | async as user">
+          Hello, {{ user.name || user.email }}
+        </span>
+        <button class="auth-btn logout-btn" (click)="logout()">Log Out</button>
+      </ng-container>
+
+      <ng-template #loggedOut>
+        <button class="auth-btn login-btn" (click)="login()">Log In</button>
+      </ng-template>
+    </div>
+  </nav>
+</header>

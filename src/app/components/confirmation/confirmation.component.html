@@ -1,0 +1,21 @@
+<div class="confirmation-container">
+  <div class="confirmation-items">
+    <h1 class="confirmation-header">Order Confirmed!</h1>
+
+    <div class="confirmation-item">
+      <p>Thank you for your order, <strong>{{ customerName }}</strong>!</p>
+    </div>
+
+    <div class="confirmation-item">
+      <p>Your order total was: <strong>{{ orderTotal | currency }}</strong></p>
+    </div>
+
+    <div class="confirmation-item">
+      <p>Your order will be shipped soon.</p>
+    </div>
+
+    <div>
+      <a routerLink="/products">Continue Shopping</a>
+    </div>
+  </div>
+</div>
